@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkyCast — Weather Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/"><span class="brand-mark">✦</span><span>skycast</span></a>
+      <div class="top-note"><span class="live-dot"></span> Live weather dashboard</div>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">WEATHER, AT A GLANCE</p>
+      <h1>Find your <span>forecast.</span></h1>
+      <p class="subtitle">A little clarity for whatever the day brings.</p>
+      <form id="search-form" class="searchbar">
+        <span class="search-icon">⌕</span>
+        <input id="city-input" type="search" list="city-suggestions" placeholder="Search a city, e.g. New Delhi" autocomplete="off" required>
+        <datalist id="city-suggestions"></datalist>
+        <button type="submit" id="search-button">Search <span>↗</span></button>
+      </form>
+      <div id="message" class="message" role="status"></div>
+    </section>
+
+    <section id="weather-content" class="weather-content hidden">
+      <div class="section-heading">
+        <div><p class="eyebrow">CURRENT CONDITIONS</p><h2 id="place-name">—</h2><p id="place-region" class="muted">—</p></div>
+        <div class="updated-pill"><span class="live-dot"></span> Latest available</div>
+      </div>
+
+      <div class="main-grid">
+        <article class="current-card panel">
+          <div class="current-top"><span id="current-date" class="muted">—</span><span id="current-icon" class="hero-weather-icon">☀️</span></div>
+          <div class="temperature-line"><span id="temperature">--</span><span class="degree">°</span></div>
+          <h3 id="description">—</h3>
+          <p class="feels">Feels like <strong id="feels-like">--°</strong></p>
+          <div class="sun-line"><span>🌅 <span id="sunrise">Forecast</span></span><span>🌇 <span id="sunset">for your area</span></span></div>
+        </article>
+        <div class="metrics-grid">
+          <article class="metric panel"><div class="metric-label"><span>Humidity</span><span>💧</span></div><div class="metric-value"><span id="humidity">--</span><small>%</small></div><p>Relative humidity</p></article>
+          <article class="metric panel"><div class="metric-label"><span>Wind speed</span><span>〰</span></div><div class="metric-value"><span id="wind">--</span><small> km/h</small></div><p>Near-surface wind</p></article>
+          <article class="metric panel"><div class="metric-label"><span>Pressure</span><span>◉</span></div><div class="metric-value"><span id="pressure">--</span><small> hPa</small></div><p>Surface pressure</p></article>
+          <article class="metric panel"><div class="metric-label"><span>Precipitation</span><span>☂</span></div><div class="metric-value"><span id="precipitation">--</span><small> mm</small></div><p>Current amount</p></article>
+        </div>
+      </div>
+
+      <section class="forecast-section">
+        <div class="section-heading compact"><div><p class="eyebrow">THE NEXT FEW HOURS</p><h2>Hourly forecast</h2></div></div>
+        <div id="hourly-list" class="hourly-list"></div>
+      </section>
+
+      <section class="forecast-section">
+        <div class="section-heading compact"><div><p class="eyebrow">PLAN AHEAD</p><h2>7-day forecast</h2></div></div>
+        <div id="daily-list" class="daily-list"></div>
+      </section>
+    </section>
+
+    <section class="history-section">
+      <div class="section-heading compact"><div><p class="eyebrow">YOUR RECENT SEARCHES</p><h2>Search history</h2></div><button id="refresh-history" class="text-button">Refresh ↻</button></div>
+      <div id="history-list" class="history-list"><p class="muted">Search for a city to get started.</p></div>
+    </section>
+
+    <footer><span>✦ skycast</span><span>Weather data by Open-Meteo · Built with FastAPI & MongoDB</span></footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
